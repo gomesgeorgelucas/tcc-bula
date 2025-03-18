@@ -1,0 +1,71 @@
+\chapter{Fundamentação Teórica}
+
+\section{Inteligência Artificial}
+
+A \textbf{Inteligência Artificial} (IA) é um campo da ciência da computação que busca desenvolver sistemas capazes de simular a capacidade humana de raciocínio, aprendizado e tomada de decisões \cite{russell2016artificial}. A IA é amplamente utilizada em diversas áreas, como reconhecimento de padrões, processamento de linguagem natural, automação de tarefas e suporte à decisão médica.
+
+Dentre as técnicas de IA, destacam-se os algoritmos de aprendizado de máquina (\textit{Machine Learning}) e aprendizado profundo (\textit{Deep Learning}), que permitem aos sistemas aprenderem a partir de grandes volumes de dados e aprimorarem seu desempenho ao longo do tempo \cite{goodfellow2016deep}.
+
+\section{Inteligência Artificial Generativa}
+
+A \textbf{Inteligência Artificial Generativa} (\textit{Generative AI}) refere-se a uma classe de algoritmos de IA capazes de criar novos conteúdos a partir de exemplos previamente aprendidos. Esses modelos são frequentemente baseados em redes neurais profundas, como \textit{transformers}, \textit{autoencoders} variacionais (VAE) e redes adversárias generativas (GANs) \cite{brown2020language}.
+
+Na área da saúde, modelos de IA generativa podem ser utilizados para gerar relatórios médicos, sumarizar informações clínicas e até mesmo criar imagens médicas sintéticas para treinamento de modelos diagnósticos \cite{shen2021artificial}.
+
+\section{Modelos de Linguagem de Grande Escala (LLMs)}
+
+Os \textbf{Modelos de Linguagem de Grande Escala} (\textit{Large Language Models} - LLMs) são modelos de IA treinados com grandes volumes de dados textuais para compreender e gerar linguagem natural. Exemplos populares incluem o GPT (Generative Pre-trained Transformer), BERT (Bidirectional Encoder Representations from Transformers) e Claude \cite{devlin2018bert}.
+
+Esses modelos são amplamente utilizados em aplicações como chatbots, geração de texto, tradução automática e suporte à tomada de decisão baseada em linguagem \cite{bommasani2021opportunities}.
+
+\section{Recuperação Aumentada por Geração (RAG)}
+
+A \textbf{Recuperação Aumentada por Geração} (\textit{Retrieval-Augmented Generation} - RAG) combina técnicas de recuperação de informações com modelos de linguagem generativa para aprimorar a precisão e relevância das respostas \cite{lewis2020retrieval}. O RAG primeiro busca informações relevantes em uma base de dados (por exemplo, documentos médicos ou bulas de medicamentos) e, em seguida, utiliza um LLM para gerar respostas com base nesses dados.
+
+Essa abordagem é especialmente útil em aplicações médicas, onde a confiabilidade da informação é fundamental. Em vez de confiar apenas no conhecimento interno do modelo de IA, o RAG permite que a IA consulte fontes externas, garantindo maior precisão e contextualização nas respostas \cite{mialon2023augmented}.
+
+\section{Embeddings e Representação de Texto}
+
+Os \textbf{embeddings} são representações vetoriais de palavras, frases ou documentos, que permitem ao computador entender relações semânticas entre diferentes textos. Modelos como Word2Vec, GloVe, FastText e Transformers são amplamente utilizados para gerar embeddings \cite{mikolov2013distributed}.
+
+Na área médica, embeddings podem ser aplicados para indexação de documentos clínicos, agrupamento de termos semelhantes e recuperação semântica de informações em prontuários eletrônicos \cite{pennington2014glove}.
+
+\section{Bancos de Dados Vetoriais}
+
+Os \textbf{bancos de dados vetoriais} são sistemas especializados no armazenamento e recuperação de embeddings. Diferentemente dos bancos de dados relacionais tradicionais, que operam com tabelas e consultas SQL, os bancos de dados vetoriais utilizam técnicas de indexação aproximada para permitir buscas eficientes em espaços de alta dimensão \cite{johnson2019billion}.
+
+Exemplos de bancos de dados vetoriais populares incluem:
+\begin{itemize}
+    \item \textbf{FAISS (Facebook AI Similarity Search)} – Otimizado para grandes volumes de embeddings e busca rápida \cite{johnson2019billion}.
+    \item \textbf{Pinecone} – Solução gerenciada na nuvem para indexação vetorial escalável.
+    \item \textbf{Milvus} – Um banco de dados vetorial de código aberto amplamente utilizado em aplicações de IA.
+\end{itemize}
+
+Esses bancos de dados são essenciais para sistemas que utilizam RAG, pois permitem recuperar documentos relevantes antes da geração da resposta \cite{jiang2021efficient}.
+
+\section{Busca em Documentos: BM25 e KNN}
+
+\subsection{BM25: Busca Baseada em Palavras-Chave}
+
+O **BM25** (\textit{Best Matching 25}) é um modelo estatístico amplamente utilizado para recuperação de documentos baseando-se na frequência dos termos presentes em um texto \cite{robertson2009probabilistic}. Ele pertence à família dos modelos de recuperação de informações baseados na frequência de palavras, sendo uma evolução do **TF-IDF (Term Frequency - Inverse Document Frequency)**.
+
+O BM25 utiliza dois fatores principais para calcular a relevância de um documento em relação a uma consulta:
+\begin{itemize}
+    \item **Frequência do termo** (\textit{Term Frequency - TF}): A quantidade de vezes que um termo aparece no documento.
+    \item **Frequência inversa no conjunto de documentos** (\textit{Inverse Document Frequency - IDF}): Mede a importância do termo em relação ao conjunto de documentos, penalizando termos muito comuns.
+\end{itemize}
+
+Dessa forma, BM25 é eficiente para encontrar documentos onde os termos da consulta aparecem com alta relevância, sendo amplamente utilizado em motores de busca, como Elasticsearch e Apache Solr \cite{manning2008introduction}.
+
+\subsection{KNN: Busca por Similaridade Vetorial}
+
+O **k-Nearest Neighbors (KNN)** é um algoritmo de aprendizado de máquina não supervisionado usado para busca de similaridade entre documentos \cite{fix1951discriminatory}. Ele funciona identificando os **k vizinhos mais próximos** de um ponto de consulta dentro de um espaço vetorial.
+
+No contexto de recuperação de informações, o KNN pode ser aplicado da seguinte forma:
+\begin{itemize}
+    \item Cada documento é convertido em um vetor numérico usando **embeddings**.
+    \item Quando uma nova consulta é feita, seu embedding é comparado com os embeddings dos documentos armazenados.
+    \item Os **k documentos mais próximos** da consulta são retornados como os mais relevantes.
+\end{itemize}
+
+A busca vetorial baseada em KNN é essencial para sistemas que utilizam **busca semântica**, pois permite encontrar textos com significados semelhantes, mesmo que não compartilhem as mesmas palavras-chave \cite{vaswani2017attention}.

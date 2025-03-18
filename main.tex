@@ -7,29 +7,30 @@
 %
 % Versão 1.3 - 15 de julho de 2022
 %
-\documentclass[a4paper,titlepage,12pt]{report}
+
+\documentclass[a4paper,twoside,titlepage,12pt]{report}
 
 
 \input{config}
 \pagestyle{plain}
-\input{./source/folhaRosto}
+\input{./files/folhaRosto}
 
 
 
 %% Preencha aqui os seguintes dados
-\def \titulo{Título do seu Trabalho de Conclusão de Curso}
-\def \orientador{Prof. Dr. Nome Completo do Orientador}
-\def \nome{Nome completo não abreviado do aluno}
-\def \mes{Julho}
-\def \ano{2022}
+\def \titulo{Validação de Prescrição Médica com Inteligência Artificial Generativa: Análise de Interações Medicamentosas Baseada em Bula}
+\def \orientador{Prof. Dr. Raimundo Corrêa de Oliveira}
+\def \nome{George Lucas Lopes da Silva Gomes}
+\def \mes{Março}
+\def \ano{2025}
 
 \begin{document}
 
 \folhaRosto{\titulo}{\nome}{\orientador}{\mes}{\ano}
 
 % Edite os seguintes arquivos para alterar as informações necessárias
-\input{./source/fichaCatalografica}
-\input{./source/folhaAprovacao}
+\input{./files/fichaCatalografica}
+\input{./files/folhaAprovacao}
 
 
 % Indique onde esta o arquivo do resumo
@@ -41,10 +42,12 @@
 \sumario
 
 % Configuração de cabeçalhos
-\input{./source/inicioCapitulos}
+\input{./files/inicioCapitulos}
 
 
 % Seus capítulos vão aqui --------
+\input{./files/introducao.tex}
+\input{./files/fundamentacao.tex}
 \input{./files/exemplo.tex}
 \input{./files/CAP4.tex}
 

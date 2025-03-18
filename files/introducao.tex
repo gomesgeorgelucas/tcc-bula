@@ -1,0 +1,157 @@
+\chapter{Introdução}
+
+\section{Justificativa}
+
+A prescrição de medicamentos é uma prática essencial na área da saúde, mas erros de prescrição podem levar a complicações médicas graves, incluindo interações medicamentosas prejudiciais, reações adversas e falhas terapêuticas. Médicos e farmacêuticos enfrentam desafios diários ao garantir que uma prescrição seja segura e eficaz para o paciente, considerando variáveis como idade, peso, condições clínicas, alergias e medicamentos em uso.
+
+A tecnologia pode desempenhar um papel fundamental na redução desses erros, proporcionando ferramentas inteligentes para análise e validação de prescrições. A aplicação proposta utilizará inteligência artificial e processamento de linguagem natural para analisar bulas de medicamentos em conjunto com os dados do paciente, gerando alertas automáticos sobre possíveis incompatibilidades.
+
+Ao desenvolver essa solução, buscamos contribuir para a segurança do paciente, reduzir a carga de trabalho dos profissionais de saúde e oferecer uma ferramenta de suporte à decisão baseada em evidências.
+
+\section{Objetivo Geral}
+
+Desenvolver uma aplicação baseada em inteligência artificial que auxilie médicos e farmacêuticos na validação de prescrições médicas, analisando bulas de medicamentos e dados clínicos do paciente para identificar possíveis interações medicamentosas e alertar sobre incompatibilidades.
+
+\section{Objetivos Específicos}
+
+\begin{itemize}
+    \item Criar um crawler para obter automaticamente bulas de medicamentos do site da Anvisa.
+    \item Permitir upload e armazenamento de bulas, tanto as baixadas da Anvisa quanto as enviadas pelo usuário.
+    \item Implementar um sistema de cadastro de pacientes, permitindo a inserção de informações médicas relevantes (idade, peso, histórico de doenças, alergias, medicamentos em uso, exames laboratoriais, etc.).
+    \item Desenvolver um mecanismo de análise semântica das bulas utilizando Langchain.js e Elasticsearch para embeddings.
+    \item Criar um mecanismo de análise automática de interações medicamentosas, validando prescrições médicas com base nos dados do paciente.
+    \item Implementar alertas e recomendações baseadas em inteligência artificial, fornecendo insights para médicos e farmacêuticos no momento da prescrição.
+\end{itemize}
+
+\section{Metodologia}
+
+\subsection{Desenvolvimento do Sistema}
+
+O projeto será desenvolvido utilizando uma arquitetura modular, dividida nos seguintes componentes principais:
+
+\begin{itemize}
+    \item \textbf{Backend (NestJS + Prisma + PostgreSQL)}
+    \begin{itemize}
+        \item CRUD para cadastro de pacientes (nome, idade, peso, histórico clínico, alergias, medicamentos em uso).
+        \item CRUD para cadastro de medicamentos e prescrições.
+        \item Integração com MinIO para armazenamento de documentos médicos.
+        \item API para comunicação com o frontend e com o módulo de inteligência artificial.
+    \end{itemize}
+
+    \item \textbf{Inteligência Artificial (Langchain.js + Elasticsearch)}
+    \begin{itemize}
+        \item Extração de informações de bulas de medicamentos.
+        \item Indexação e busca semântica utilizando embeddings de IA.
+        \item Geração de relatórios e validações por meio do modelo Claude Sonnet 3.5.
+        \item Sugestões de ajustes nas prescrições médicas.
+    \end{itemize}
+
+    \item \textbf{Frontend (AngularJS + MaterialUI/Bootstrap)}
+    \begin{itemize}
+        \item Tela de cadastro de paciente.
+        \item Interface para upload de documentos e pesquisa de bulas.
+        \item Visualização de alertas e recomendações personalizadas.
+    \end{itemize}
+\end{itemize}
+
+\section{Etapas do Projeto}
+
+O desenvolvimento será dividido em sete etapas, cada uma com suas atividades e entregáveis.
+
+\subsection{Etapa 1: Criar o Crawler da Anvisa}
+
+\textbf{Objetivo:} Obter bulas de medicamentos automaticamente do site da Anvisa.
+
+\textbf{Tarefas:}
+\begin{itemize}
+    \item Identificar as URLs relevantes e a estrutura do site da Anvisa.
+    \item Definir a tecnologia do crawler (Scrapy, BeautifulSoup ou Selenium).
+    \item Implementar o script para buscar e baixar bulas automaticamente.
+    \item Criar uma base de metadados para armazenar informações extraídas.
+    \item Lidar com possíveis bloqueios (CAPTCHA, rate limits).
+\end{itemize}
+
+\textbf{Previsão:} 1-2 semanas
+
+\subsection{Etapa 2: Upload e Armazenamento de Arquivos}
+
+\textbf{Objetivo:} Criar um sistema para armazenar bulas baixadas e arquivos enviados pelo usuário.
+
+\textbf{Tarefas:}
+\begin{itemize}
+    \item Criar endpoints no backend (NestJS) para upload e consulta de arquivos.
+    \item Configurar MinIO para armazenar documentos.
+    \item Estruturar um banco de dados (PostgreSQL) para associar bulas aos usuários.
+    \item Criar mecanismos para recuperação e listagem de arquivos.
+\end{itemize}
+
+\textbf{Previsão:} 1-2 semanas
+
+\subsection{Etapa 3: Embeddings das Bulas}
+
+\textbf{Objetivo:} Processar documentos para permitir consultas semânticas via IA.
+
+\textbf{Tarefas:}
+\begin{itemize}
+    \item Criar um pipeline de processamento utilizando Langchain.js e Elasticsearch.
+    \item Indexar bulas automaticamente para permitir pesquisa inteligente.
+    \item Criar endpoints para busca por similaridade.
+\end{itemize}
+
+\textbf{Previsão:} 1 semana
+
+\subsection{Etapa 4: Cadastro de Usuários}
+
+\textbf{Objetivo:} Criar um sistema para cadastrar médicos e permitir autenticação.
+
+\textbf{Tarefas:}
+\begin{itemize}
+    \item Criar a estrutura de usuários no PostgreSQL.
+    \item Implementar autenticação JWT e gerenciamento de permissões.
+    \item Criar interface de login e perfil no frontend.
+\end{itemize}
+
+\textbf{Previsão:} 1 semana
+
+\subsection{Etapa 5: Upload de Arquivos de Usuários}
+
+\textbf{Objetivo:} Permitir que médicos adicionem documentos médicos dos pacientes.
+
+\textbf{Tarefas:}
+\begin{itemize}
+    \item Criar endpoints no backend para upload e armazenamento de arquivos.
+    \item Associar documentos a pacientes no banco de dados.
+    \item Criar a interface de gerenciamento de arquivos no frontend.
+\end{itemize}
+
+\textbf{Previsão:} 1-2 semanas
+
+\subsection{Etapa 6: Embeddings dos Documentos do Usuário}
+
+\textbf{Objetivo:} Permitir consultas inteligentes nos documentos médicos do paciente.
+
+\textbf{Tarefas:}
+\begin{itemize}
+    \item Criar um pipeline de embeddings para os arquivos médicos.
+    \item Indexar automaticamente os documentos ao serem enviados.
+    \item Criar endpoints para busca semântica nos arquivos médicos.
+\end{itemize}
+
+\textbf{Previsão:} 1 semana
+
+\subsection{Etapa 7: Análise de Interações Medicamentosas e Validação de Prescrição}
+
+\textbf{Objetivo:} Criar alertas automáticos para identificar interações medicamentosas e validar prescrições.
+
+\textbf{Tarefas:}
+\begin{itemize}
+    \item Criar prompts específicos para o Claude Sonnet 3.5 gerar relatórios.
+    \item Implementar endpoints no backend para validação de interações medicamentosas.
+    \item Criar uma interface no frontend para exibir os alertas ao médico.
+\end{itemize}
+
+\textbf{Previsão:} 2 semanas
+
+\section{Próximo Passo}
+
+Com base nesse planejamento, o primeiro passo será a implementação do crawler para obter bulas do site da Anvisa.
